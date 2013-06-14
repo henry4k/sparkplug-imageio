@@ -1,10 +1,12 @@
-AddModule(${ModulePrefix}ImageIo)
-TARGET_LINK_LIBRARIES(${ModulePrefix}ImageIo ${ModulePrefix}Common)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-RequiredPackage(ZLIB)
-RequiredPackage(PNG)
-	ADD_DEFINITIONS(${PNG_DEFINITIONS})
-	AddIncludeDirs(${ModulePrefix}ImageIo ${ZLIB_INCLUDE_DIRS} ${PNG_INCLUDE_DIR})
-	TARGET_LINK_LIBRARIES(${ModulePrefix}ImageIo ${ZLIB_LIBRARIES} ${PNG_LIBRARIES})
+LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
 
-InstallModule(${ModulePrefix}ImageIo)
+INCLUDE("CxxFlags")
+SET(CMAKE_CXX_FLAGS "${STRICT_CXX_FLAGS}")
+
+PROJECT("SparkPlug_ImageIo" C CXX)
+
+OPTION(BUILD_SHARED_LIBS "Build modules as shared libraries?" OFF)
+
+ADD_SUBDIRECTORY("Source")
