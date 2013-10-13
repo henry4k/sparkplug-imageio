@@ -5,7 +5,8 @@ LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake")
 INCLUDE("CxxFlags")
 SET(CMAKE_CXX_FLAGS "${STRICT_CXX_FLAGS}")
 
-PROJECT("SparkPlug_ImageIo" C CXX)
+PROJECT("sparkplug-imageio" C CXX)
+SET(VERSION "1.6")
 
 OPTION(BUILD_SHARED_LIBS "Build modules as shared libraries?" OFF)
 
