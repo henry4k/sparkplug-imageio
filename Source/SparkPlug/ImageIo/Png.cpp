@@ -16,7 +16,8 @@ bool LoadPngImage( Image* out, FILE* fp )
 	assert(out);
 	assert(fp);
 	
-	vec3i imageSize(0, 0, 0);
+	int imageWidth = 0;
+	int imageHeight = 0;
 	png_byte* imageData = NULL;
 	PixelSemantic  pixelSemantic;
 	PixelComponent pixelComponent = PixelComponent_UInt8;
@@ -94,8 +95,8 @@ bool LoadPngImage( Image* out, FILE* fp )
 	png_get_IHDR(png_ptr, info_ptr, &twidth, &theight, &bit_depth, &color_type, NULL, NULL, NULL);
 
 	//update width and height based on png info
-	imageSize.x = int(twidth);
-	imageSize.y = int(theight);
+	imageWidth = int(twidth);
+	imageHeight = int(theight);
 
 	switch(color_type)
 	{
@@ -151,7 +152,7 @@ bool LoadPngImage( Image* out, FILE* fp )
 	//read the png into imageData through row_pointers
 	png_read_image(png_ptr, row_pointers);
 
-	out->initFromRaw(PixelFormat(pixelSemantic, pixelComponent), imageSize, reinterpret_cast<char*>(imageData));
+	out->initFromRaw(PixelFormat(pixelSemantic, pixelComponent), imageWidth, imageHeight, 1, reinterpret_cast<char*>(imageData));
 	
 	//clean up memory and close stuff
 	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);

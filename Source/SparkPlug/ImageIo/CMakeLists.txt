@@ -25,7 +25,7 @@ INSTALL(TARGETS sparkplug-imageio
 if(UNIX)
     SET(PKG_DEPS "sparkplug-core >= ${VERSION}, libpng >= 1.2")
     SET(PKG_LIBS "")
-    SET(LIB_NAME "sparkplug-imageio.${VERSION}")
+    SET(LIB_NAME "sparkplug-imageio")
 
     CONFIGURE_FILE(
         ${CMAKE_SOURCE_DIR}/sparkplug-imageio.pc.in
